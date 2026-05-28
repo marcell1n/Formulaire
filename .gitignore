@@ -1,0 +1,6 @@
+# Variables d'environnement locales (NE PAS mettre sur GitHub)
+.env
+.env.local
+.env.*.local
+# Local Netlify folder
+.netlify
