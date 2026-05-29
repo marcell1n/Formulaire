@@ -390,7 +390,7 @@ export default function App() {
             <input
               ref={fileInputRef}
               type="file"
-              accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx"
+              accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.zip"
               onChange={
                 handleFileChange
               }

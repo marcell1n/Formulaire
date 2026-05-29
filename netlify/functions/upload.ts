@@ -54,11 +54,17 @@ if (body.file && body.filename) {
 
   const dataUrl = `data:${body.mimetype ?? "application/octet-stream"};base64,${body.file}`
 
-  const uploaded = await cloudinary.uploader.upload(dataUrl, {
-    folder: "formulaire",
-    resource_type: "auto",
-    public_id: `${Date.now()}-${body.filename}`,
-  })
+  const isPdf = body.mimetype === "application/pdf"
+
+const uploaded = await cloudinary.uploader.upload(dataUrl, {
+  folder: "formulaire",
+  resource_type: isPdf ? "raw" : "auto",
+  public_id: `${Date.now()}-${body.filename.replace(/\.[^/.]+$/, "")}`,
+})
+
+console.log("URL:", uploaded.secure_url)
+console.log("Type:", uploaded.resource_type)
+console.log("Format:", uploaded.format)
 
   console.log("Cloudinary URL:", uploaded.secure_url)
   attachments = [{ url: uploaded.secure_url, filename: body.filename }]
